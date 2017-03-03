@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>How you do dat?</title>
+    {% load staticfiles %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static 'dodat_app/css/main.css' %}"media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <div class="mainbox">
+      <h2 class="header_text">How You Do Dat?</h2>
+      <a class="align_center subheader_text">Have you ever asked yourself: "How you do dat?"</a>
+      <h3>Now you can finally get an answer!</h3>
+      <a class="horiz_line"></a>
+      {% if messages %}
+          {% for message in messages %}
+            <p class="text_entered red">{{message}}</p>
+        {% endfor %}
+      {% endif %}
+      <form action='/search/' method='post'>
+        {% csrf_token %}
+        <p>Ask away:</p>
+        <input type='text' class="text_input" name='question' value= ""><p></p>
+        <input type="submit" class="button_input" name='search_button' value="I'm feeling clueless">
+        <input type='submit' class="button_input" name='search_button' value='How you do dat?'>
+      </form>
+
+    </div>
+
+  </body>
+</html>
